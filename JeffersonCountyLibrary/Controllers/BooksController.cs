@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace JeffersonCountyLibrary.Controllers
 {
+    [Authorize]
     public class BooksController : Controller
     {
         private readonly LibraryDbContext _context;
@@ -24,6 +25,7 @@ namespace JeffersonCountyLibrary.Controllers
         }
 
         // GET: Books/Create
+        [Authorize(Roles = "Librarian")]
         public IActionResult Create()
         {
             ViewData["BranchId"] = new SelectList(_context.Branches, "Id", "Id");
